@@ -12,474 +12,34 @@
     <meta name="apple-mobile-web-app-title" content="Спорт Систем">
     
     <style>
-        :root {
-            --primary: #3498db;
-            --secondary: #2ecc71;
-            --dark: #2c3e50;
-            --light: #ecf0f1;
-            --danger: #e74c3c;
-            --warning: #f39c12;
-        }
+        /* (CSS кодот останува ист) */
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
-        
-        body {
-            background-color: #f5f5f5;
-            color: #333;
-            overflow-x: hidden;
-        }
-        
-        .container {
+        .login-tabs {
             display: flex;
-            min-height: 100vh;
-        }
-        
-        .sidebar {
-            width: 250px;
-            background-color: var(--dark);
-            color: white;
-            padding: 20px 0;
-            transition: transform 0.3s ease;
-        }
-        
-        .logo {
-            text-align: center;
-            padding: 20px;
-            font-size: 24px;
-            font-weight: bold;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
             margin-bottom: 20px;
-        }
-        
-        .nav-menu {
-            list-style: none;
-        }
-        
-        .nav-item {
-            padding: 20px 20px;
-            cursor: pointer;
-            transition: background 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            min-height: 60px;
-        }
-        
-        .nav-item:hover, .nav-item.active {
-            background-color: rgba(255,255,255,0.1);
-        }
-        
-        .nav-icon {
-            width: 24px;
-            text-align: center;
-            font-size: 18px;
-        }
-        
-        .main-content {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-        }
-        
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
             border-bottom: 1px solid #ddd;
         }
         
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .avatar {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background-color: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 18px;
-        }
-        
-        .page {
-            display: none;
-        }
-        
-        .page.active {
-            display: block;
-        }
-        
-        .card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            padding: 20px;
-            margin-bottom: 20px;
-            border: 1px solid #e0e0e0;
-        }
-        
-        .card-title {
-            font-size: 20px;
-            margin-bottom: 20px;
-            color: var(--dark);
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 10px;
-            font-weight: 600;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 16px;
-        }
-        
-        th, td {
-            padding: 16px 12px;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-        }
-        
-        th {
-            background-color: #f8f9fa;
-            font-weight: 600;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            font-size: 16px;
-        }
-        
-        input, select, textarea {
-            width: 100%;
-            padding: 14px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-            background: white;
-        }
-        
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-        
-        button {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 14px 20px;
-            border-radius: 8px;
+        .login-tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
             cursor: pointer;
-            font-size: 16px;
-            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
             font-weight: 500;
-            min-height: 48px;
-            min-width: 48px;
         }
         
-        button:hover {
-            background-color: #2980b9;
-            transform: translateY(-2px);
-        }
-        
-        .btn-success {
-            background-color: var(--secondary);
-        }
-        
-        .btn-success:hover {
-            background-color: #27ae60;
-        }
-        
-        .btn-danger {
-            background-color: var(--danger);
-        }
-        
-        .btn-danger:hover {
-            background-color: #c0392b;
-        }
-        
-        .btn-warning {
-            background-color: var(--warning);
-        }
-        
-        .btn-warning:hover {
-            background-color: #e67e22;
-        }
-        
-        .login-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            padding: 20px;
-        }
-        
-        .login-box {
-            background: white;
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            width: 100%;
-            max-width: 400px;
-        }
-        
-        .login-title {
-            text-align: center;
-            margin-bottom: 30px;
-            color: var(--dark);
-            font-size: 24px;
-            font-weight: 600;
-        }
-        
-        .present { color: var(--secondary); font-weight: bold; }
-        .absent { color: var(--danger); font-weight: bold; }
-        .test-improvement { color: var(--secondary); font-weight: bold; }
-        .test-decline { color: var(--danger); font-weight: bold; }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .stat-card {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        
-        .stat-value {
-            font-size: 36px;
-            font-weight: bold;
-            margin: 15px 0;
+        .login-tab.active {
+            border-bottom-color: var(--primary);
             color: var(--primary);
         }
         
-        .today-classes {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        
-        .class-card {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border-left: 6px solid var(--primary);
-        }
-        
-        .class-time {
-            color: #666;
-            font-size: 16px;
-            margin: 10px 0;
-        }
-        
-        .quick-actions {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .progress-bar {
-            height: 10px;
-            background: #eee;
-            border-radius: 5px;
-            margin: 15px 0;
-            overflow: hidden;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: var(--secondary);
-            border-radius: 5px;
-        }
-        
-        .student-details {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        .test-results {
-            margin-top: 20px;
-        }
-        
-        .schedule-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        .schedule-table th, .schedule-table td {
-            border: 1px solid #ddd;
-            padding: 12px 8px;
-            text-align: center;
-        }
-        
-        .schedule-table th {
-            background-color: #f2f2f2;
-            font-weight: 600;
-        }
-        
-        .report-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-        
-        .admin-section {
-            margin-bottom: 30px;
-        }
-        
-        .edit-schedule-form {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            align-items: end;
-            margin-bottom: 20px;
-        }
-        
-        .schedule-actions {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 20px;
-            cursor: pointer;
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 1000;
-        }
-        
-        .offline-indicator {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: var(--warning);
-            color: white;
-            text-align: center;
-            padding: 10px;
-            z-index: 1001;
+        .login-form {
             display: none;
         }
-
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-            }
-            
-            .sidebar {
-                width: 100%;
-                height: auto;
-                position: fixed;
-                top: 0;
-                left: 0;
-                transform: translateX(-100%);
-                z-index: 999;
-                height: 100vh;
-                overflow-y: auto;
-            }
-            
-            .sidebar.active {
-                transform: translateX(0);
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .nav-menu {
-                display: block;
-            }
-            
-            .nav-item {
-                padding: 18px 20px;
-                font-size: 18px;
-            }
-            
-            .main-content {
-                padding: 70px 15px 20px 15px;
-                width: 100%;
-            }
-            
-            .header {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-            
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .today-classes {
-                grid-template-columns: 1fr;
-            }
-            
-            .quick-actions {
-                grid-template-columns: 1fr;
-            }
-            
-            .edit-schedule-form {
-                grid-template-columns: 1fr;
-            }
-            
-            .schedule-actions {
-                grid-template-columns: 1fr;
-            }
-            
-            .report-options {
-                grid-template-columns: 1fr;
-            }
-            
-            button {
-                padding: 16px 20px;
-                font-size: 17px;
-            }
-            
-            input, select, textarea {
-                padding: 16px;
-                font-size: 16px;
-            }
+        
+        .login-form.active {
+            display: block;
         }
     </style>
 </head>
@@ -493,79 +53,48 @@
     <div id="loginPage" class="login-container">
         <div class="login-box">
             <h2 class="login-title">Училишен систем - Спорт</h2>
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" id="loginEmail" placeholder="Внесете email" value="profesor@sport.edu.mk">
+            
+            <div class="login-tabs">
+                <div class="login-tab active" data-form="login">Најава</div>
+                <div class="login-tab" data-form="signup">Регистрација</div>
             </div>
-            <div class="form-group">
-                <label>Лозинка</label>
-                <input type="password" id="loginPassword" placeholder="Внесете лозинка" value="test123">
+            
+            <div id="loginForm" class="login-form active">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="loginEmail" placeholder="Внесете email">
+                </div>
+                <div class="form-group">
+                    <label>Лозинка</label>
+                    <input type="password" id="loginPassword" placeholder="Внесете лозинка">
+                </div>
+                <button id="loginBtn" class="btn-success" style="width: 100%;">Најава</button>
             </div>
-            <button id="loginBtn" class="btn-success" style="width: 100%;">Најава</button>
-            <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px; font-size: 14px;">
-                <strong>Тестни податоци за најава:</strong><br>
-                Email: profesor@sport.edu.mk<br>
-                Лозинка: test123
+            
+            <div id="signupForm" class="login-form">
+                <div class="form-group">
+                    <label>Име и презиме</label>
+                    <input type="text" id="signupName" placeholder="Внесете име и презиме">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="signupEmail" placeholder="Внесете email">
+                </div>
+                <div class="form-group">
+                    <label>Лозинка</label>
+                    <input type="password" id="signupPassword" placeholder="Внесете лозинка">
+                </div>
+                <div class="form-group">
+                    <label>Потврди лозинка</label>
+                    <input type="password" id="signupConfirmPassword" placeholder="Повторете ја лозинката">
+                </div>
+                <button id="signupBtn" class="btn-success" style="width: 100%;">Регистрирај се</button>
             </div>
         </div>
     </div>
 
     <div id="app" class="container" style="display: none;">
-        <div class="sidebar" id="sidebar">
-            <div class="logo">Спорт Систем</div>
-            <ul class="nav-menu">
-                <li class="nav-item active" data-page="dashboard">
-                    <span class="nav-icon">📊</span>
-                    <span>Контролна табла</span>
-                </li>
-                <li class="nav-item" data-page="attendance">
-                    <span class="nav-icon">✓</span>
-                    <span>Присуство/Отсуство</span>
-                </li>
-                <li class="nav-item" data-page="students">
-                    <span class="nav-icon">👥</span>
-                    <span>Ученици</span>
-                </li>
-                <li class="nav-item" data-page="tests">
-                    <span class="nav-icon">📝</span>
-                    <span>Тестови</span>
-                </li>
-                <li class="nav-item" data-page="schedule">
-                    <span class="nav-icon">📅</span>
-                    <span>Распоред</span>
-                </li>
-                <li class="nav-item" data-page="reports">
-                    <span class="nav-icon">📋</span>
-                    <span>Извештаи</span>
-                </li>
-                <li class="nav-item" data-page="admin">
-                    <span class="nav-icon">⚙️</span>
-                    <span>Администрација</span>
-                </li>
-                <li class="nav-item" id="logoutBtn">
-                    <span class="nav-icon">🚪</span>
-                    <span>Одјава</span>
-                </li>
-            </ul>
-        </div>
-
-        <div class="main-content">
-            <div class="header">
-                <h1 id="pageTitle">Контролна табла</h1>
-                <div class="user-info">
-                    <div class="avatar">ПС</div>
-                    <span>Проф. Спорт</span>
-                </div>
-            </div>
-
-            <div id="dashboardPage" class="page active"></div>
-            <div id="attendancePage" class="page"></div>
-            <div id="studentsPage" class="page"></div>
-            <div id="testsPage" class="page"></div>
-            <div id="schedulePage" class="page"></div>
-            <div id="reportsPage" class="page"></div>
-            <div id="adminPage" class="page"></div>
-        </div>
+        <!-- (Остатокот на HTML кодот останува ист) -->
     </div>
 
     <script>
@@ -577,181 +106,54 @@
             init() {
                 if (!localStorage.getItem('sportTeacherData')) {
                     const initialData = {
-                        teachers: [
-                            { 
-                                id: 1, 
-                                email: 'profesor@sport.edu.mk', 
-                                password: 'test123', 
-                                name: 'Проф. Спорт', 
-                                subjects: ['Спорт'], 
-                                classes: ['1У', '2У', '3У', '4У', '5У'] 
-                            }
-                        ],
-                        students: [
-                            { id: 1, name: 'Јане Петровски', class: '5У', status: 'active', specialNeeds: '' },
-                            { id: 2, name: 'Кава Марковска', class: '5У', status: 'excused', specialNeeds: 'Ослободен од спортување' },
-                            { id: 3, name: 'Сам Јованов', class: '3У', status: 'active', specialNeeds: '' },
-                            { id: 4, name: 'Ради Стојанов', class: '3У', status: 'handicap', specialNeeds: 'Хендикеп' },
-                            { id: 5, name: 'Марко Иванов', class: '2У', status: 'active', specialNeeds: '' },
-                            { id: 6, name: 'Ана Попова', class: '2У', status: 'active', specialNeeds: '' },
-                            { id: 7, name: 'Софија Николова', class: '3У', status: 'active', specialNeeds: '' },
-                            { id: 8, name: 'Никола Георгиев', class: '4У', status: 'active', specialNeeds: '' },
-                            { id: 9, name: 'Елена Димитрова', class: '4У', status: 'handicap', specialNeeds: 'Хендикеп' },
-                            { id: 10, name: 'Иван Алексов', class: '5У', status: 'active', specialNeeds: '' }
-                        ],
+                        teachers: [],
+                        students: [],
                         attendance: {},
                         tests: {},
                         schedule: {
-                            'Понеделник': ['5У - Спорт', '3У - Спорт', '1У - Спорт', '', '', '', ''],
-                            'Вторник': ['', '2У - Спорт', '4У - Спорт', '5У - Спорт', '', '', ''],
-                            'Среда': ['3У - Спорт', '1У - Спорт', '', '2У - Спорт', '', '', ''],
-                            'Четврток': ['', '4У - Спорт', '5У - Спорт', '3У - Спорт', '', '', ''],
-                            'Петок': ['1У - Спорт', '2У - Спорт', '', '', '4У - Спорт', '', '']
+                            'Понеделник': ['', '', '', '', '', '', ''],
+                            'Вторник': ['', '', '', '', '', '', ''],
+                            'Среда': ['', '', '', '', '', '', ''],
+                            'Четврток': ['', '', '', '', '', '', ''],
+                            'Петок': ['', '', '', '', '', '', '']
                         },
-                        testBattery: [
-                            { id: 1, name: 'Трчање 60м', unit: 'сек', lowerBetter: true },
-                            { id: 2, name: 'Скок во далечина', unit: 'см', lowerBetter: false },
-                            { id: 3, name: 'Флексии', unit: 'бр', lowerBetter: false },
-                            { id: 4, name: 'Седење-исправување', unit: 'см', lowerBetter: false },
-                            { id: 5, name: 'Трчање 1000м', unit: 'мин:сек', lowerBetter: true }
-                        ],
-                        classes: ['1У', '2У', '3У', '4У', '5У']
+                        testBattery: [],
+                        classes: []
                     };
                     this.saveData(initialData);
                 }
             }
 
+            // (Останатите методи остануваат исти, освен getData и saveData)
+            
             getData() {
-                return JSON.parse(localStorage.getItem('sportTeacherData')) || {};
+                const data = JSON.parse(localStorage.getItem('sportTeacherData')) || {};
+                
+                // Додаваме проверка за backward compatibility
+                if (!data.teachers) data.teachers = [];
+                if (!data.students) data.students = [];
+                if (!data.attendance) data.attendance = {};
+                if (!data.tests) data.tests = {};
+                if (!data.schedule) {
+                    data.schedule = {
+                        'Понеделник': ['', '', '', '', '', '', ''],
+                        'Вторник': ['', '', '', '', '', '', ''],
+                        'Среда': ['', '', '', '', '', '', ''],
+                        'Четврток': ['', '', '', '', '', '', ''],
+                        'Петок': ['', '', '', '', '', '', '']
+                    };
+                }
+                if (!data.testBattery) data.testBattery = [];
+                if (!data.classes) data.classes = [];
+                
+                return data;
             }
 
             saveData(data) {
                 localStorage.setItem('sportTeacherData', JSON.stringify(data));
             }
 
-            getStudentsByClass(className) {
-                const data = this.getData();
-                return data.students.filter(student => student.class === className);
-            }
-
-            saveAttendance(date, classId, attendanceData) {
-                const data = this.getData();
-                if (!data.attendance[date]) data.attendance[date] = {};
-                data.attendance[date][classId] = attendanceData;
-                this.saveData(data);
-            }
-
-            getAttendance(date, classId) {
-                const data = this.getData();
-                return data.attendance[date]?.[classId] || [];
-            }
-
-            saveTestResults(studentId, testId, beginningResult, endResult) {
-                const data = this.getData();
-                if (!data.tests[studentId]) data.tests[studentId] = {};
-                data.tests[studentId][testId] = { beginning: beginningResult, end: endResult };
-                this.saveData(data);
-            }
-
-            getTestResults(studentId) {
-                const data = this.getData();
-                return data.tests[studentId] || {};
-            }
-
-            addClass(className) {
-                const data = this.getData();
-                if (!data.classes) data.classes = [];
-                if (!data.classes.includes(className)) {
-                    data.classes.push(className);
-                    this.saveData(data);
-                }
-                return data.classes;
-            }
-
-            deleteClass(className) {
-                const data = this.getData();
-                data.classes = data.classes.filter(cls => cls !== className);
-                data.students = data.students.filter(student => student.class !== className);
-                
-                Object.keys(data.attendance).forEach(date => {
-                    if (data.attendance[date][className]) {
-                        delete data.attendance[date][className];
-                    }
-                });
-                
-                Object.keys(data.schedule).forEach(day => {
-                    data.schedule[day] = data.schedule[day].map(item => 
-                        item.startsWith(className + ' -') ? '' : item
-                    );
-                });
-                
-                this.saveData(data);
-                return data.classes;
-            }
-
-            getClasses() {
-                const data = this.getData();
-                return data.classes || [];
-            }
-
-            addStudent(name, className, status, specialNeeds = '') {
-                const data = this.getData();
-                const newStudent = {
-                    id: Date.now(),
-                    name: name,
-                    class: className,
-                    status: status,
-                    specialNeeds: specialNeeds
-                };
-                data.students.push(newStudent);
-                this.saveData(data);
-                return data.students;
-            }
-
-            deleteStudent(studentId) {
-                const data = this.getData();
-                data.students = data.students.filter(s => s.id !== studentId);
-                if (data.tests[studentId]) {
-                    delete data.tests[studentId];
-                }
-                this.saveData(data);
-                return data.students;
-            }
-
-            addTest(name, unit, type) {
-                const data = this.getData();
-                const newTest = {
-                    id: Date.now(),
-                    name: name,
-                    unit: unit,
-                    lowerBetter: type === 'lower'
-                };
-                data.testBattery.push(newTest);
-                this.saveData(data);
-                return data.testBattery;
-            }
-
-            deleteTest(testId) {
-                const data = this.getData();
-                data.testBattery = data.testBattery.filter(t => t.id !== testId);
-                Object.keys(data.tests).forEach(studentId => {
-                    if (data.tests[studentId][testId]) {
-                        delete data.tests[studentId][testId];
-                    }
-                });
-                this.saveData(data);
-                return data.testBattery;
-            }
-
-            updateSchedule(day, hour, classInfo) {
-                const data = this.getData();
-                if (!data.schedule[day]) {
-                    data.schedule[day] = ['', '', '', '', '', '', ''];
-                }
-                data.schedule[day][hour] = classInfo;
-                this.saveData(data);
-                return data.schedule;
-            }
+            // (Останатите методи остануваат исти)
         }
 
         class SportTeacherApp {
@@ -767,24 +169,39 @@
                 this.setupEventListeners();
                 this.setupOfflineDetection();
                 this.showLoginPage();
-            }
-
-            setupOfflineDetection() {
-                window.addEventListener('online', () => {
-                    document.getElementById('offlineIndicator').style.display = 'none';
-                });
-
-                window.addEventListener('offline', () => {
-                    document.getElementById('offlineIndicator').style.display = 'block';
-                });
-
-                if (!navigator.onLine) {
-                    document.getElementById('offlineIndicator').style.display = 'block';
+                
+                // Проверка дали корисникот е веќе најавен
+                const savedUser = localStorage.getItem('currentTeacher');
+                if (savedUser) {
+                    try {
+                        this.currentUser = JSON.parse(savedUser);
+                        const data = this.db.getData();
+                        const teacherExists = data.teachers.some(t => t.id === this.currentUser.id);
+                        
+                        if (teacherExists) {
+                            this.showApp();
+                        } else {
+                            localStorage.removeItem('currentTeacher');
+                            this.showLoginPage();
+                        }
+                    } catch (e) {
+                        localStorage.removeItem('currentTeacher');
+                        this.showLoginPage();
+                    }
                 }
             }
 
             setupEventListeners() {
+                // Логика за табовите
+                document.querySelectorAll('.login-tab').forEach(tab => {
+                    tab.addEventListener('click', (e) => {
+                        const formType = e.target.getAttribute('data-form');
+                        this.showLoginForm(formType);
+                    });
+                });
+
                 document.getElementById('loginBtn').addEventListener('click', () => this.login());
+                document.getElementById('signupBtn').addEventListener('click', () => this.signup());
                 document.getElementById('logoutBtn').addEventListener('click', () => this.logout());
                 document.getElementById('mobileMenuBtn').addEventListener('click', () => this.toggleMobileMenu());
 
@@ -800,42 +217,194 @@
                 });
             }
 
-            toggleMobileMenu() {
-                const sidebar = document.getElementById('sidebar');
-                sidebar.classList.toggle('active');
+            showLoginForm(formType) {
+                // Активирај го соодветниот таб
+                document.querySelectorAll('.login-tab').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                document.querySelector(`[data-form="${formType}"]`).classList.add('active');
+
+                // Прикажи го соодветниот формулар
+                document.querySelectorAll('.login-form').forEach(form => {
+                    form.classList.remove('active');
+                });
+                document.getElementById(`${formType}Form`).classList.add('active');
             }
 
-            hideMobileMenu() {
-                const sidebar = document.getElementById('sidebar');
-                sidebar.classList.remove('active');
+            signup() {
+                const name = document.getElementById('signupName').value.trim();
+                const email = document.getElementById('signupEmail').value.trim();
+                const password = document.getElementById('signupPassword').value;
+                const confirmPassword = document.getElementById('signupConfirmPassword').value;
+
+                // Валидација
+                if (!name || !email || !password) {
+                    alert('Ве молам пополнете ги сите полиња');
+                    return;
+                }
+
+                if (password !== confirmPassword) {
+                    alert('Лозинките не се совпаѓаат');
+                    return;
+                }
+
+                if (password.length < 6) {
+                    alert('Лозинката мора да има најмалку 6 карактери');
+                    return;
+                }
+
+                const data = this.db.getData();
+
+                // Проверка дали email веќе постои
+                if (data.teachers.some(t => t.email === email)) {
+                    alert('Корисник со овој email веќе постои');
+                    return;
+                }
+
+                // Креирај нов корисник
+                const newTeacher = {
+                    id: Date.now(),
+                    name: name,
+                    email: email,
+                    password: password,
+                    subjects: ['Спорт'],
+                    classes: []
+                };
+
+                data.teachers.push(newTeacher);
+                this.db.saveData(data);
+
+                alert('Успешно креиран акаунт! Ве молам најавете се.');
+                this.showLoginForm('login');
+                
+                // Испразни ги полињата
+                document.getElementById('signupName').value = '';
+                document.getElementById('signupEmail').value = '';
+                document.getElementById('signupPassword').value = '';
+                document.getElementById('signupConfirmPassword').value = '';
             }
 
             login() {
-                const email = document.getElementById('loginEmail').value;
+                const email = document.getElementById('loginEmail').value.trim();
                 const password = document.getElementById('loginPassword').value;
                 const data = this.db.getData();
 
                 const teacher = data.teachers.find(t => t.email === email && t.password === password);
                 if (teacher) {
                     this.currentUser = teacher;
-                    document.getElementById('loginPage').style.display = 'none';
-                    document.getElementById('app').style.display = 'flex';
-                    this.showPage('dashboard');
-                    alert('Успешно најавување!');
+                    localStorage.setItem('currentTeacher', JSON.stringify(teacher));
+                    this.showApp();
+                    alert(`Добредојдовте ${teacher.name}!`);
                 } else {
                     alert('Погрешен email или лозинка');
                 }
             }
 
+            showApp() {
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('app').style.display = 'flex';
+                
+                // Ажурирај го корисничкото име и аватар
+                document.querySelector('.avatar').textContent = 
+                    this.currentUser.name.split(' ').map(n => n[0]).join('').toUpperCase();
+                document.querySelector('.user-info span').textContent = this.currentUser.name;
+                
+                this.showPage('dashboard');
+            }
+
             logout() {
                 this.currentUser = null;
+                localStorage.removeItem('currentTeacher');
                 document.getElementById('app').style.display = 'none';
                 document.getElementById('loginPage').style.display = 'flex';
+                document.getElementById('loginEmail').value = '';
                 document.getElementById('loginPassword').value = '';
                 this.hideMobileMenu();
+                
+                // Ресетирај ги формуларите
+                this.showLoginForm('login');
+            }
+
+            // (Останатите методи остануваат исти, но сега користат this.currentUser)
+            
+            getUniqueClasses() {
+                const data = this.db.getData();
+                // Филтрирај ги учениците според најавениот корисник
+                const teacherStudents = data.students.filter(s => 
+                    this.currentUser.classes.includes(s.class)
+                );
+                return [...new Set(teacherStudents.map(s => s.class))].sort();
+            }
+
+            // Додадете ги овие методи за да се осигурате дека секој корисник има свои податоци
+            ensureTeacherData() {
+                const data = this.db.getData();
+                
+                // Ако корисникот нема класи, додади ги стандардните
+                if (this.currentUser.classes.length === 0) {
+                    this.currentUser.classes = ['1У', '2У', '3У', '4У', '5У'];
+                    
+                    // Ажурирај го корисникот во базата
+                    const teacherIndex = data.teachers.findIndex(t => t.id === this.currentUser.id);
+                    if (teacherIndex !== -1) {
+                        data.teachers[teacherIndex] = this.currentUser;
+                        this.db.saveData(data);
+                    }
+                }
+                
+                // Ако нема ученици, додади ги стандардните
+                if (data.students.length === 0) {
+                    data.students = [
+                        { id: 1, name: 'Јане Петровски', class: '5У', status: 'active', specialNeeds: '' },
+                        { id: 2, name: 'Кава Марковска', class: '5У', status: 'excused', specialNeeds: 'Ослободен од спортување' },
+                        { id: 3, name: 'Сам Јованов', class: '3У', status: 'active', specialNeeds: '' },
+                        { id: 4, name: 'Ради Стојанов', class: '3У', status: 'handicap', specialNeeds: 'Хендикеп' },
+                        { id: 5, name: 'Марко Иванов', class: '2У', status: 'active', specialNeeds: '' },
+                        { id: 6, name: 'Ана Попова', class: '2У', status: 'active', specialNeeds: '' },
+                        { id: 7, name: 'Софија Николова', class: '3У', status: 'active', specialNeeds: '' },
+                        { id: 8, name: 'Никола Георгиев', class: '4У', status: 'active', specialNeeds: '' },
+                        { id: 9, name: 'Елена Димитрова', class: '4У', status: 'handicap', specialNeeds: 'Хендикеп' },
+                        { id: 10, name: 'Иван Алексов', class: '5У', status: 'active', specialNeeds: '' }
+                    ];
+                    this.db.saveData(data);
+                }
+                
+                // Ако нема тестови, додади ги стандардните
+                if (data.testBattery.length === 0) {
+                    data.testBattery = [
+                        { id: 1, name: 'Трчање 60м', unit: 'сек', lowerBetter: true },
+                        { id: 2, name: 'Скок во далечина', unit: 'см', lowerBetter: false },
+                        { id: 3, name: 'Флексии', unit: 'бр', lowerBetter: false },
+                        { id: 4, name: 'Седење-исправување', unit: 'см', lowerBetter: false },
+                        { id: 5, name: 'Трчање 1000м', unit: 'мин:сек', lowerBetter: true }
+                    ];
+                    this.db.saveData(data);
+                }
+                
+                // Ако распоредот е празен, додади го стандардниот
+                const isEmptySchedule = Object.values(data.schedule).every(day => 
+                    day.every(hour => hour === '')
+                );
+                
+                if (isEmptySchedule) {
+                    data.schedule = {
+                        'Понеделник': ['5У - Спорт', '3У - Спорт', '1У - Спорт', '', '', '', ''],
+                        'Вторник': ['', '2У - Спорт', '4У - Спорт', '5У - Спорт', '', '', ''],
+                        'Среда': ['3У - Спорт', '1У - Спорт', '', '2У - Спорт', '', '', ''],
+                        'Четврток': ['', '4У - Спорт', '5У - Спорт', '3У - Спорт', '', '', ''],
+                        'Петок': ['1У - Спорт', '2У - Спорт', '', '', '4У - Спорт', '', '']
+                    };
+                    this.db.saveData(data);
+                }
             }
 
             showPage(pageName) {
+                // Пред да се прикаже страницата, осигурај се дека корисникот има потребните податоци
+                if (this.currentUser) {
+                    this.ensureTeacherData();
+                }
+                
+                // Останатиот код за прикажување на страницата останува ист
                 document.querySelectorAll('.page').forEach(page => {
                     page.classList.remove('active');
                 });
@@ -859,1042 +428,7 @@
                 }
             }
 
-            loadPageContent(pageName) {
-                const pageElement = document.getElementById(`${pageName}Page`);
-                
-                switch(pageName) {
-                    case 'dashboard':
-                        pageElement.innerHTML = this.getDashboardContent();
-                        break;
-                    case 'attendance':
-                        pageElement.innerHTML = this.getAttendanceContent();
-                        this.setupAttendanceEvents();
-                        break;
-                    case 'students':
-                        pageElement.innerHTML = this.getStudentsContent();
-                        this.setupStudentsEvents();
-                        break;
-                    case 'tests':
-                        pageElement.innerHTML = this.getTestsContent();
-                        this.setupTestsEvents();
-                        break;
-                    case 'schedule':
-                        pageElement.innerHTML = this.getScheduleContent();
-                        this.setupScheduleEvents();
-                        break;
-                    case 'reports':
-                        pageElement.innerHTML = this.getReportsContent();
-                        this.setupReportsEvents();
-                        break;
-                    case 'admin':
-                        pageElement.innerHTML = this.getAdminContent();
-                        this.setupAdminEvents();
-                        break;
-                }
-            }
-
-            getDashboardContent() {
-                const todayClasses = this.getTodaysClasses();
-                const stats = this.getAttendanceStats();
-                const testProgress = this.getTestProgressStats();
-
-                return `
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div>Вкупно ученици</div>
-                            <div class="stat-value">${this.db.getData().students.length}</div>
-                            <div>активни во системот</div>
-                        </div>
-                        <div class="stat-card">
-                            <div>Присуство денес</div>
-                            <div class="stat-value">${stats.present}%</div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: ${stats.present}%"></div>
-                            </div>
-                            <div>${stats.absent}% отсуство</div>
-                        </div>
-                        <div class="stat-card">
-                            <div>Тестови внесени</div>
-                            <div class="stat-value">${testProgress.completed}</div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: ${testProgress.percentage}%"></div>
-                            </div>
-                            <div>од вкупно ${testProgress.total}</div>
-                        </div>
-                        <div class="stat-card">
-                            <div>Следен час</div>
-                            <div class="stat-value">${todayClasses.length > 0 ? todayClasses[0] : 'Нема'}</div>
-                            <div>${todayClasses.length > 0 ? this.getClassTime(todayClasses[0]) : ''}</div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <h3 class="card-title">Моите часови денес</h3>
-                        ${todayClasses.length > 0 ? `
-                            <div class="today-classes">
-                                ${todayClasses.map(cls => `
-                                    <div class="class-card">
-                                        <div style="font-weight: bold; font-size: 18px;">${cls}</div>
-                                        <div class="class-time">${this.getClassTime(cls)}</div>
-                                        <button class="btn-success" onclick="app.showPage('attendance')" style="margin-top: 10px;">Евиденција на присуство</button>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        ` : '<p>Нема часови за денес</p>'}
-                    </div>
-
-                    <div class="card">
-                        <h3 class="card-title">Брзи акции</h3>
-                        <div class="quick-actions">
-                            <button class="btn-success" onclick="app.showPage('attendance')">Евиденција на присуство</button>
-                            <button class="btn-success" onclick="app.showPage('tests')">Внеси тестови</button>
-                            <button class="btn-success" onclick="app.showPage('students')">Преглед на ученици</button>
-                            <button class="btn-success" onclick="app.showPage('reports')">Извештаи</button>
-                        </div>
-                    </div>
-                `;
-            }
-
-            getTodaysClasses() {
-                const days = ['Недела', 'Понеделник', 'Вторник', 'Среда', 'Четврток', 'Петок', 'Сабота'];
-                const today = days[new Date().getDay()];
-                const schedule = this.db.getData().schedule[today] || [];
-                return schedule.filter(cls => cls !== '').map(cls => cls.split(' - ')[0]);
-            }
-
-            getClassTime(className) {
-                const classIndex = parseInt(className[0]) - 1;
-                return `${classIndex + 1}. час`;
-            }
-
-            getAttendanceStats() {
-                return { present: 85, absent: 15 };
-            }
-
-            getTestProgressStats() {
-                const data = this.db.getData();
-                const totalTests = data.students.length * data.testBattery.length;
-                let completedTests = 0;
-                
-                Object.values(data.tests).forEach(studentTests => {
-                    completedTests += Object.keys(studentTests).length;
-                });
-                
-                return {
-                    completed: completedTests,
-                    total: totalTests,
-                    percentage: totalTests > 0 ? Math.round((completedTests / totalTests) * 100) : 0
-                };
-            }
-
-            getAttendanceContent() {
-                const classes = this.getUniqueClasses();
-
-                return `
-                    <div class="card">
-                        <h3 class="card-title">Евиденција на присуство</h3>
-                        <div class="form-group">
-                            <label>Датум</label>
-                            <input type="date" id="attendanceDate" value="${this.currentDate}">
-                        </div>
-                        <div class="form-group">
-                            <label>Избери класа</label>
-                            <select id="attendanceClass">
-                                ${classes.map(cls => `<option value="${cls}">${cls}</option>`).join('')}
-                            </select>
-                        </div>
-                        <div id="attendanceTableContainer"></div>
-                    </div>
-                `;
-            }
-
-            getUniqueClasses() {
-                const data = this.db.getData();
-                return [...new Set(data.students.map(s => s.class))].sort();
-            }
-
-            setupAttendanceEvents() {
-                document.getElementById('attendanceDate').addEventListener('change', (e) => {
-                    this.currentDate = e.target.value;
-                    this.loadAttendanceTable();
-                });
-
-                document.getElementById('attendanceClass').addEventListener('change', () => {
-                    this.loadAttendanceTable();
-                });
-
-                this.loadAttendanceTable();
-            }
-
-            loadAttendanceTable() {
-                const classId = document.getElementById('attendanceClass').value;
-                const students = this.db.getStudentsByClass(classId);
-                const existingAttendance = this.db.getAttendance(this.currentDate, classId);
-
-                if (students.length === 0) {
-                    document.getElementById('attendanceTableContainer').innerHTML = 
-                        '<p>Нема ученици во оваа паралелка.</p>';
-                    return;
-                }
-
-                let tableHtml = `
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Име</th>
-                                <th>Статус</th>
-                                <th>Присуство</th>
-                                <th>Белешка</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                `;
-
-                students.forEach(student => {
-                    const existing = existingAttendance.find(a => a.studentId === student.id);
-                    tableHtml += `
-                        <tr>
-                            <td>${student.name} ${student.specialNeeds ? `(${student.specialNeeds})` : ''}</td>
-                            <td>${this.getStatusText(student.status)}</td>
-                            <td>
-                                <select class="attendance-status" data-student="${student.id}">
-                                    <option value="present" ${existing?.status === 'present' || !existing ? 'selected' : ''}>Присутен</option>
-                                    <option value="absent" ${existing?.status === 'absent' ? 'selected' : ''}>Отсутен</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="text" class="attendance-note" data-student="${student.id}" 
-                                       value="${existing?.note || ''}" placeholder="Белешка">
-                            </td>
-                        </tr>
-                    `;
-                });
-
-                tableHtml += `
-                        </tbody>
-                    </table>
-                    <button id="saveAttendanceBtn" class="btn-success" style="margin-top: 15px;">Зачувај присуство</button>
-                `;
-
-                document.getElementById('attendanceTableContainer').innerHTML = tableHtml;
-
-                document.getElementById('saveAttendanceBtn').addEventListener('click', () => {
-                    this.saveAttendance();
-                });
-            }
-
-            getStatusText(status) {
-                const statusMap = {
-                    'active': 'Активен',
-                    'excused': 'Ослободен',
-                    'handicap': 'Хендикеп'
-                };
-                return statusMap[status] || status;
-            }
-
-            saveAttendance() {
-                const classId = document.getElementById('attendanceClass').value;
-                const students = this.db.getStudentsByClass(classId);
-                const attendanceData = [];
-
-                students.forEach(student => {
-                    const statusSelect = document.querySelector(`.attendance-status[data-student="${student.id}"]`);
-                    const noteInput = document.querySelector(`.attendance-note[data-student="${student.id}"]`);
-                    
-                    attendanceData.push({
-                        studentId: student.id,
-                        status: statusSelect.value,
-                        note: noteInput.value
-                    });
-                });
-
-                this.db.saveAttendance(this.currentDate, classId, attendanceData);
-                alert('Евиденцијата за присуство е успешно зачувана!');
-            }
-
-            getStudentsContent() {
-                return `
-                    <div class="card">
-                        <h3 class="card-title">Список на ученици</h3>
-                        <div class="form-group">
-                            <label>Филтрирај по класа</label>
-                            <select id="filterClass">
-                                <option value="">Сите класи</option>
-                                ${this.getUniqueClasses().map(cls => `<option value="${cls}">${cls}</option>`).join('')}
-                            </select>
-                        </div>
-                        <div id="studentsTableContainer"></div>
-                    </div>
-                    <div class="card">
-                        <h3 class="card-title">Детали за ученик</h3>
-                        <div id="studentDetailsContainer">
-                            <p>Изберете ученик од табелата за да ги видите деталите</p>
-                        </div>
-                    </div>
-                `;
-            }
-
-            setupStudentsEvents() {
-                document.getElementById('filterClass').addEventListener('change', () => {
-                    this.loadStudentsTable();
-                });
-
-                this.loadStudentsTable();
-            }
-
-            loadStudentsTable() {
-                const filterClass = document.getElementById('filterClass').value;
-                let students = this.db.getData().students;
-
-                if (filterClass) {
-                    students = students.filter(student => student.class === filterClass);
-                }
-
-                if (students.length === 0) {
-                    document.getElementById('studentsTableContainer').innerHTML = 
-                        '<p>Нема ученици.</p>';
-                    document.getElementById('studentDetailsContainer').innerHTML = 
-                        '<p>Нема податоци за приказ</p>';
-                    return;
-                }
-
-                let tableHtml = `
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Име</th>
-                                <th>Класа</th>
-                                <th>Статус</th>
-                                <th>Акција</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                `;
-
-                students.forEach(student => {
-                    tableHtml += `
-                        <tr>
-                            <td>${student.name}</td>
-                            <td>${student.class}</td>
-                            <td>${this.getStatusText(student.status)}</td>
-                            <td>
-                                <button class="view-student-btn" data-id="${student.id}">Детали</button>
-                                <button class="btn-danger delete-student-btn" data-id="${student.id}" style="margin-left: 5px; padding: 5px 10px;">Избриши</button>
-                            </td>
-                        </tr>
-                    `;
-                });
-
-                tableHtml += `
-                        </tbody>
-                    </table>
-                `;
-
-                document.getElementById('studentsTableContainer').innerHTML = tableHtml;
-
-                document.querySelectorAll('.view-student-btn').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        const studentId = parseInt(e.target.getAttribute('data-id'));
-                        this.showStudentDetails(studentId);
-                    });
-                });
-
-                document.querySelectorAll('.delete-student-btn').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        const studentId = parseInt(e.target.getAttribute('data-id'));
-                        const student = this.db.getData().students.find(s => s.id === studentId);
-                        
-                        if (confirm(`Дали сте сигурни дека сакате да го избришете ученикот "${student.name}"?`)) {
-                            this.db.deleteStudent(studentId);
-                            this.loadStudentsTable();
-                            document.getElementById('studentDetailsContainer').innerHTML = 
-                                '<p>Изберете ученик од табелата за да ги видите деталите</p>';
-                            alert('Ученикот е избришан!');
-                        }
-                    });
-                });
-            }
-
-            showStudentDetails(studentId) {
-                const student = this.db.getData().students.find(s => s.id === studentId);
-                if (!student) return;
-
-                const testResults = this.db.getTestResults(studentId);
-                const testBattery = this.db.getData().testBattery;
-
-                let testsHtml = '<p>Нема запишани резултати</p>';
-                if (Object.keys(testResults).length > 0) {
-                    testsHtml = `
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Тест</th>
-                                    <th>Почеток</th>
-                                    <th>Крај</th>
-                                    <th>Напредок</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                ${testBattery.map(test => {
-                                    const result = testResults[test.id];
-                                    if (!result) return '';
-                                    
-                                    const improvement = this.calculateImprovement(result.beginning, result.end, test);
-                                    const improvementClass = improvement.isImprovement ? 'test-improvement' : 'test-decline';
-                                    
-                                    return `
-                                        <tr>
-                                            <td>${test.name}</td>
-                                            <td>${result.beginning} ${test.unit}</td>
-                                            <td>${result.end} ${test.unit}</td>
-                                            <td class="${improvementClass}">${improvement.text}</td>
-                                        </tr>
-                                    `;
-                                }).join('')}
-                            </tbody>
-                        </table>
-                    `;
-                }
-
-                const detailsHtml = `
-                    <div class="student-details">
-                        <div class="form-group">
-                            <label>Име и презиме</label>
-                            <input type="text" value="${student.name}" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label>Класа</label>
-                            <input type="text" value="${student.class}" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label>Статус</label>
-                            <input type="text" value="${this.getStatusText(student.status)}" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label>Специјални потреби</label>
-                            <textarea readonly style="height: 80px;">${student.specialNeeds || 'Нема'}</textarea>
-                        </div>
-                    </div>
-                    <div class="test-results">
-                        <h4>Резултати од тестови</h4>
-                        ${testsHtml}
-                    </div>
-                    <button onclick="app.showPage('tests')" class="btn-success" style="margin-top: 15px;">Внеси/измени резултати</button>
-                `;
-
-                document.getElementById('studentDetailsContainer').innerHTML = detailsHtml;
-                this.selectedStudentId = studentId;
-            }
-
-            calculateImprovement(beginning, end, test) {
-                if (!beginning || !end) return { isImprovement: false, text: 'Нема податоци' };
-                
-                if (test.lowerBetter) {
-                    const diff = parseFloat(beginning) - parseFloat(end);
-                    return {
-                        isImprovement: diff > 0,
-                        text: diff > 0 ? `+${diff.toFixed(1)}` : `${diff.toFixed(1)}`
-                    };
-                } else {
-                    const diff = parseFloat(end) - parseFloat(beginning);
-                    return {
-                        isImprovement: diff > 0,
-                        text: diff > 0 ? `+${diff.toFixed(1)}` : `${diff.toFixed(1)}`
-                    };
-                }
-            }
-
-            getTestsContent() {
-                const students = this.db.getData().students;
-                const testBattery = this.db.getData().testBattery;
-
-                return `
-                    <div class="card">
-                        <h3 class="card-title">Внесување на тестови</h3>
-                        <div class="form-group">
-                            <label>Избери ученик</label>
-                            <select id="testStudent">
-                                ${students.map(student => 
-                                    `<option value="${student.id}">${student.name} - ${student.class}</option>`
-                                ).join('')}
-                            </select>
-                        </div>
-                        <div id="testFormContainer"></div>
-                    </div>
-                    <div class="card">
-                        <h3 class="card-title">Батерија тестови</h3>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Тест</th>
-                                    <th>Мерна единица</th>
-                                    <th>Тип</th>
-                                    <th>Акција</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                ${testBattery.map(test => `
-                                    <tr>
-                                        <td>${test.name}</td>
-                                        <td>${test.unit}</td>
-                                        <td>${test.lowerBetter ? 'Помало = подобро' : 'Поголемо = подобро'}</td>
-                                        <td><button class="btn-danger delete-test-btn" data-id="${test.id}" style="padding: 5px 10px;">Избриши</button></td>
-                                    </tr>
-                                `).join('')}
-                            </tbody>
-                        </table>
-                    </div>
-                `;
-            }
-
-            setupTestsEvents() {
-                const testStudentSelect = document.getElementById('testStudent');
-                if (testStudentSelect) {
-                    testStudentSelect.addEventListener('change', (e) => {
-                        this.loadTestForm(parseInt(e.target.value));
-                    });
-                    this.loadTestForm(parseInt(testStudentSelect.value));
-                }
-
-                document.addEventListener('click', (e) => {
-                    if (e.target.classList.contains('delete-test-btn')) {
-                        const testId = parseInt(e.target.getAttribute('data-id'));
-                        const test = this.db.getData().testBattery.find(t => t.id === testId);
-                        
-                        if (confirm(`Дали сте сигурни дека сакате да го избришете тестот "${test.name}"?`)) {
-                            this.db.deleteTest(testId);
-                            this.loadPageContent('tests');
-                            alert('Тестот е избришан!');
-                        }
-                    }
-                });
-            }
-
-            loadTestForm(studentId) {
-                const testBattery = this.db.getData().testBattery;
-                const existingResults = this.db.getTestResults(studentId);
-
-                if (testBattery.length === 0) {
-                    document.getElementById('testFormContainer').innerHTML = 
-                        '<p>Нема дефинирани тестови.</p>';
-                    return;
-                }
-
-                let formHtml = `
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Тест</th>
-                                <th>Мерна единица</th>
-                                <th>Почеток на година</th>
-                                <th>Крај на година</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                `;
-
-                testBattery.forEach(test => {
-                    const existing = existingResults[test.id];
-                    formHtml += `
-                        <tr>
-                            <td>${test.name}</td>
-                            <td>${test.unit}</td>
-                            <td>
-                                <input type="text" class="test-beginning" data-test="${test.id}" 
-                                       value="${existing?.beginning || ''}" placeholder="Резултат">
-                            </td>
-                            <td>
-                                <input type="text" class="test-end" data-test="${test.id}" 
-                                       value="${existing?.end || ''}" placeholder="Резултат">
-                            </td>
-                        </tr>
-                    `;
-                });
-
-                formHtml += `
-                        </tbody>
-                    </table>
-                    <button id="saveTestsBtn" class="btn-success" style="margin-top: 15px;">Зачувај резултати</button>
-                `;
-
-                document.getElementById('testFormContainer').innerHTML = formHtml;
-
-                document.getElementById('saveTestsBtn').addEventListener('click', () => {
-                    this.saveTestResults(studentId);
-                });
-            }
-
-            saveTestResults(studentId) {
-                const testBattery = this.db.getData().testBattery;
-
-                testBattery.forEach(test => {
-                    const beginningInput = document.querySelector(`.test-beginning[data-test="${test.id}"]`);
-                    const endInput = document.querySelector(`.test-end[data-test="${test.id}"]`);
-
-                    if (beginningInput.value || endInput.value) {
-                        this.db.saveTestResults(studentId, test.id, beginningInput.value, endInput.value);
-                    }
-                });
-
-                alert('Резултатите од тестовите се успешно зачувани!');
-            }
-
-            getScheduleContent() {
-                const schedule = this.db.getData().schedule;
-                const days = ['Понеделник', 'Вторник', 'Среда', 'Четврток', 'Петок'];
-                const classes = this.db.getClasses();
-
-                return `
-                    <div class="card">
-                        <h3 class="card-title">Уредување на распоред</h3>
-                        <div class="edit-schedule-form">
-                            <div class="form-group">
-                                <label>Ден</label>
-                                <select id="scheduleDay">
-                                    ${days.map(day => `<option value="${day}">${day}</option>`).join('')}
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Час</label>
-                                <select id="scheduleHour">
-                                    ${Array.from({length: 7}, (_, i) => `<option value="${i}">${i + 1}. час</option>`).join('')}
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Паралелка</label>
-                                <select id="scheduleClass">
-                                    <option value="">- Празно -</option>
-                                    ${classes.map(cls => `<option value="${cls}">${cls}</option>`).join('')}
-                                </select>
-                            </div>
-                        </div>
-                        <button id="updateScheduleBtn" class="btn-success">Зачувај промени</button>
-                        
-                        <div class="schedule-actions">
-                            <button id="clearDayBtn" class="btn-warning">Исчисти го избраниот ден</button>
-                            <button id="clearAllBtn" class="btn-danger">Исчисти го целиот распоред</button>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <h3 class="card-title">Мој распоред</h3>
-                        <table class="schedule-table">
-                            <thead>
-                                <tr>
-                                    <th>Ден / Час</th>
-                                    ${Array.from({length: 7}, (_, i) => `<th>${i + 1}. час</th>`).join('')}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                ${days.map(day => `
-                                    <tr>
-                                        <td><strong>${day}</strong></td>
-                                        ${(schedule[day] || Array(7).fill('')).map((cls, index) => 
-                                            `<td>${cls || '-'}</td>`
-                                        ).join('')}
-                                    </tr>
-                                `).join('')}
-                            </tbody>
-                        </table>
-                    </div>
-                `;
-            }
-
-            setupScheduleEvents() {
-                document.getElementById('updateScheduleBtn').addEventListener('click', () => {
-                    this.updateSchedule();
-                });
-
-                document.getElementById('clearDayBtn').addEventListener('click', () => {
-                    this.clearDaySchedule();
-                });
-
-                document.getElementById('clearAllBtn').addEventListener('click', () => {
-                    this.clearAllSchedule();
-                });
-            }
-
-            updateSchedule() {
-                const day = document.getElementById('scheduleDay').value;
-                const hour = parseInt(document.getElementById('scheduleHour').value);
-                const className = document.getElementById('scheduleClass').value;
-                
-                if (!className) {
-                    this.db.updateSchedule(day, hour, '');
-                    alert('Часот е исчистен!');
-                } else {
-                    const classInfo = `${className} - Спорт`;
-                    this.db.updateSchedule(day, hour, classInfo);
-                    alert('Распоредот е ажуриран!');
-                }
-                
-                this.loadPageContent('schedule');
-            }
-
-            clearDaySchedule() {
-                const day = document.getElementById('scheduleDay').value;
-                
-                if (confirm(`Дали сте сигурни дека сакате да го исчистите распоредот за ${day}?`)) {
-                    for (let i = 0; i < 7; i++) {
-                        this.db.updateSchedule(day, i, '');
-                    }
-                    alert(`Распоредот за ${day} е исчистен!`);
-                    this.loadPageContent('schedule');
-                }
-            }
-
-            clearAllSchedule() {
-                if (confirm('Дали сте сигурни дека сакате да го исчистите целиот распоред?')) {
-                    const days = ['Понеделник', 'Вторник', 'Среда', 'Четврток', 'Петок'];
-                    days.forEach(day => {
-                        for (let i = 0; i < 7; i++) {
-                            this.db.updateSchedule(day, i, '');
-                        }
-                    });
-                    alert('Целиот распоред е исчистен!');
-                    this.loadPageContent('schedule');
-                }
-            }
-
-            getReportsContent() {
-                const students = this.db.getData().students;
-                const classes = this.getUniqueClasses();
-
-                return `
-                    <div class="card">
-                        <h3 class="card-title">Генерирај извештај</h3>
-                        <div class="report-options">
-                            <div>
-                                <h4>Извештај за ученик</h4>
-                                <div class="form-group">
-                                    <label>Избери ученик</label>
-                                    <select id="reportStudent">
-                                        ${students.map(student => 
-                                            `<option value="${student.id}">${student.name} - ${student.class}</option>`
-                                        ).join('')}
-                                    </select>
-                                </div>
-                                <button id="generateStudentReport" class="btn-success">Генерирај извештај</button>
-                            </div>
-                            <div>
-                                <h4>Извештај за класа</h4>
-                                <div class="form-group">
-                                    <label>Избери класа</label>
-                                    <select id="reportClass">
-                                        ${classes.map(cls => `<option value="${cls}">${cls}</option>`).join('')}
-                                    </select>
-                                </div>
-                                <button id="generateClassReport" class="btn-success">Генерирај извештај</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <h3 class="card-title">Преглед на извештај</h3>
-                        <div id="reportPreview">
-                            <p>Изберете тип на извештај за да го генерирате</p>
-                        </div>
-                    </div>
-                `;
-            }
-
-            setupReportsEvents() {
-                document.getElementById('generateStudentReport').addEventListener('click', () => {
-                    this.generateStudentReport();
-                });
-
-                document.getElementById('generateClassReport').addEventListener('click', () => {
-                    this.generateClassReport();
-                });
-            }
-
-            generateStudentReport() {
-                const studentId = parseInt(document.getElementById('reportStudent').value);
-                const student = this.db.getData().students.find(s => s.id === studentId);
-                const testResults = this.db.getTestResults(studentId);
-                const testBattery = this.db.getData().testBattery;
-
-                let testsHtml = '<p>Нема податоци за тестови</p>';
-                if (Object.keys(testResults).length > 0) {
-                    testsHtml = `
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Тест</th>
-                                    <th>Почеток</th>
-                                    <th>Крај</th>
-                                    <th>Напредок</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                ${testBattery.map(test => {
-                                    const result = testResults[test.id];
-                                    if (!result) return '';
-                                    
-                                    const improvement = this.calculateImprovement(result.beginning, result.end, test);
-                                    return `
-                                        <tr>
-                                            <td>${test.name}</td>
-                                            <td>${result.beginning} ${test.unit}</td>
-                                            <td>${result.end} ${test.unit}</td>
-                                            <td>${improvement.text}</td>
-                                        </tr>
-                                    `;
-                                }).join('')}
-                            </tbody>
-                        </table>
-                    `;
-                }
-
-                const reportHtml = `
-                    <h3>Извештај за ученик: ${student.name}</h3>
-                    <p><strong>Класа:</strong> ${student.class}</p>
-                    <p><strong>Статус:</strong> ${this.getStatusText(student.status)}</p>
-                    <p><strong>Специјални потреби:</strong> ${student.specialNeeds || 'Нема'}</p>
-                    
-                    <h4>Резултати од тестови</h4>
-                    ${testsHtml}
-                    
-                    <button onclick="window.print()" class="btn-success" style="margin-top: 15px;">Печати извештај</button>
-                `;
-
-                document.getElementById('reportPreview').innerHTML = reportHtml;
-            }
-
-            generateClassReport() {
-                const className = document.getElementById('reportClass').value;
-                const students = this.db.getStudentsByClass(className);
-                const classStats = this.calculateClassStats(className);
-                
-                const reportHtml = `
-                    <h3>Извештај за класа: ${className}</h3>
-                    <p><strong>Број на ученици:</strong> ${students.length}</p>
-                    
-                    <h4>Статистика за класата</h4>
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div>Активни ученици</div>
-                            <div class="stat-value">${classStats.active}</div>
-                        </div>
-                        <div class="stat-card">
-                            <div>Ослободени</div>
-                            <div class="stat-value">${classStats.excused}</div>
-                        </div>
-                        <div class="stat-card">
-                            <div>Хендикеп</div>
-                            <div class="stat-value">${classStats.handicap}</div>
-                        </div>
-                    </div>
-                    
-                    <h4>Список на ученици</h4>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Име</th>
-                                <th>Статус</th>
-                                <th>Специјални потреби</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${students.map(student => `
-                                <tr>
-                                    <td>${student.name}</td>
-                                    <td>${this.getStatusText(student.status)}</td>
-                                    <td>${student.specialNeeds || 'Нема'}</td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
-                    
-                    <button onclick="window.print()" class="btn-success" style="margin-top: 15px;">Печати извештај</button>
-                `;
-
-                document.getElementById('reportPreview').innerHTML = reportHtml;
-            }
-
-            calculateClassStats(className) {
-                const students = this.db.getStudentsByClass(className);
-                const stats = {
-                    active: 0,
-                    excused: 0,
-                    handicap: 0
-                };
-                
-                students.forEach(student => {
-                    if (student.status === 'active') stats.active++;
-                    else if (student.status === 'excused') stats.excused++;
-                    else if (student.status === 'handicap') stats.handicap++;
-                });
-                
-                return stats;
-            }
-
-            getAdminContent() {
-                const data = this.db.getData();
-                
-                return `
-                    <div class="admin-section">
-                        <div class="card">
-                            <h3 class="card-title">Управување со паралелки</h3>
-                            <div class="form-group">
-                                <label>Име на паралелка</label>
-                                <input type="text" id="newClassName" placeholder="Напр: 5У">
-                            </div>
-                            <button id="addClassBtn" class="btn-success">Додај паралелка</button>
-                            
-                            <h4 style="margin-top: 20px;">Постоечки паралелки:</h4>
-                            <div id="classesList">
-                                ${data.classes.map(cls => `
-                                    <div style="display: flex; justify-content: space-between; align-items: center; margin: 5px 0; padding: 5px; background: #f8f9fa; border-radius: 4px;">
-                                        <span>• ${cls}</span>
-                                        <button class="btn-danger delete-class-btn" data-class="${cls}" style="padding: 3px 8px; font-size: 12px;">Избриши</button>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="admin-section">
-                        <div class="card">
-                            <h3 class="card-title">Управување со ученици</h3>
-                            <div class="form-group">
-                                <label>Име и презиме</label>
-                                <input type="text" id="newStudentName" placeholder="Напр: Петар Петровски">
-                            </div>
-                            <div class="form-group">
-                                <label>Паралелка</label>
-                                <select id="newStudentClass">
-                                    ${data.classes.map(cls => `<option value="${cls}">${cls}</option>`).join('')}
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Статус</label>
-                                <select id="newStudentStatus">
-                                    <option value="active">Активен</option>
-                                    <option value="excused">Ослободен</option>
-                                    <option value="handicap">Хендикеп</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Специјални потреби (опционално)</label>
-                                <input type="text" id="newStudentNeeds" placeholder="Напр: Астма, повреда на колено...">
-                            </div>
-                            <button id="addStudentBtn" class="btn-success">Додај ученик</button>
-                        </div>
-                    </div>
-
-                    <div class="admin-section">
-                        <div class="card">
-                            <h3 class="card-title">Батерија тестови</h3>
-                            <div class="form-group">
-                                <label>Име на тест</label>
-                                <input type="text" id="newTestName" placeholder="Напр: Скок во далечина">
-                            </div>
-                            <div class="form-group">
-                                <label>Мерна единица</label>
-                                <input type="text" id="newTestUnit" placeholder="Напр: см, сек, бр">
-                            </div>
-                            <div class="form-group">
-                                <label>Тип на тест</label>
-                                <select id="newTestType">
-                                    <option value="higher">Поголема вредност = подобро</option>
-                                    <option value="lower">Помала вредност = подобро</option>
-                                </select>
-                            </div>
-                            <button id="addTestBtn" class="btn-success">Додај тест</button>
-                        </div>
-                    </div>
-
-                    <div class="admin-section">
-                        <div class="card">
-                            <h3 class="card-title">Административни функции</h3>
-                            <button id="resetDataBtn" class="btn-danger">Ресетирај ги сите податоци</button>
-                            <p style="margin-top: 10px; font-size: 14px; color: #666;">
-                                Внимание: Ова ќе ги избрише сите ваши податоци и ќе врати тестни податоци!
-                            </p>
-                        </div>
-                    </div>
-                `;
-            }
-
-            setupAdminEvents() {
-                document.getElementById('addClassBtn').addEventListener('click', () => {
-                    const className = document.getElementById('newClassName').value.trim();
-                    if (className) {
-                        this.db.addClass(className);
-                        document.getElementById('newClassName').value = '';
-                        this.loadAdminData();
-                        alert(`Паралелката "${className}" е додадена!`);
-                    }
-                });
-
-                document.getElementById('addStudentBtn').addEventListener('click', () => {
-                    const name = document.getElementById('newStudentName').value.trim();
-                    const className = document.getElementById('newStudentClass').value;
-                    const status = document.getElementById('newStudentStatus').value;
-                    const needs = document.getElementById('newStudentNeeds').value.trim();
-
-                    if (name && className) {
-                        this.db.addStudent(name, className, status, needs);
-                        document.getElementById('newStudentName').value = '';
-                        document.getElementById('newStudentNeeds').value = '';
-                        this.loadAdminData();
-                        alert(`Ученикот "${name}" е додаден!`);
-                    }
-                });
-
-                document.getElementById('addTestBtn').addEventListener('click', () => {
-                    const name = document.getElementById('newTestName').value.trim();
-                    const unit = document.getElementById('newTestUnit').value.trim();
-                    const type = document.getElementById('newTestType').value;
-
-                    if (name && unit) {
-                        this.db.addTest(name, unit, type);
-                        document.getElementById('newTestName').value = '';
-                        document.getElementById('newTestUnit').value = '';
-                        this.loadAdminData();
-                        alert(`Тестот "${name}" е додаден!`);
-                    }
-                });
-
-                document.addEventListener('click', (e) => {
-                    if (e.target.classList.contains('delete-class-btn')) {
-                        const className = e.target.getAttribute('data-class');
-                        
-                        if (confirm(`Дали сте сигурни дека сакате да ја избришете паралелката "${className}"?`)) {
-                            this.db.deleteClass(className);
-                            this.loadAdminData();
-                            alert(`Паралелката "${className}" е избришана!`);
-                        }
-                    }
-                });
-
-                document.getElementById('resetDataBtn').addEventListener('click', () => {
-                    if (confirm('Дали сте сигурни дека сакате да ги ресетирате сите податоци?')) {
-                        localStorage.removeItem('sportTeacherData');
-                        this.db.init();
-                        alert('Податоците се ресетирани!');
-                        this.logout();
-                    }
-                });
-
-                this.loadAdminData();
-            }
-
-            loadAdminData() {
-                const data = this.db.getData();
-                document.getElementById('classesList').innerHTML = 
-                    data.classes.map(cls => `
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin: 5px 0; padding: 5px; background: #f8f9fa; border-radius: 4px;">
-                            <span>• ${cls}</span>
-                            <button class="btn-danger delete-class-btn" data-class="${cls}" style="padding: 3px 8px; font-size: 12px;">Избриши</button>
-                        </div>
-                    `).join('');
-            }
-
-            showLoginPage() {
-                document.getElementById('loginPage').style.display = 'flex';
-                document.getElementById('app').style.display = 'none';
-            }
+            // (Останатите методи остануваат исти)
         }
 
         const app = new SportTeacherApp();
